@@ -75,6 +75,9 @@ public class Repository implements Comparable<Repository> {
     }
 
     public BuildStatus getLastBuildStatus() {
+        if (lastBuildStatus == null) {
+            lastBuildStatus = BuildStatus.STATUS_UNKNOWN;
+        }
         return lastBuildStatus;
     }
 
@@ -143,7 +146,7 @@ public class Repository implements Comparable<Repository> {
 
     public int compareTo(Repository o) {
         CompareToBuilder builder = new CompareToBuilder();
-        builder.append(lastBuildStatus, o.getLastBuildStatus());
+        builder.append(o.getLastBuildStatus().getWeight(), getLastBuildStatus().getWeight());
         builder.append(lastBuildFinishedAt, o.getLastBuildFinishedAt());
         builder.append(name, o.getName());
         builder.append(id, o.getId());
