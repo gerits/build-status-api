@@ -6,8 +6,8 @@ import java.util.List;
 public enum BuildStatus implements Comparable<BuildStatus> {
 
     STATUS_LOGIN(Arrays.asList("login"), 100),
-    STATUS_FAILING(Arrays.asList("failed", "errored", "canceled"), 40),
-    STATUS_BUILDING(Arrays.asList("created", "started", "received", "queued"), 30),
+    STATUS_BUILDING(Arrays.asList("created", "started", "received", "queued"), 40),
+    STATUS_FAILING(Arrays.asList("failed", "errored", "canceled"), 30),
     STATUS_PASSING(Arrays.asList("passed", "ready"), 20),
     STATUS_UNKNOWN(null, 0);
 

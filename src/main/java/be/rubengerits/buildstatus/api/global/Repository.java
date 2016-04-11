@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Date;
 
@@ -147,9 +148,19 @@ public class Repository implements Comparable<Repository> {
     public int compareTo(Repository o) {
         CompareToBuilder builder = new CompareToBuilder();
         builder.append(o.getLastBuildStatus().getWeight(), getLastBuildStatus().getWeight());
-        builder.append(lastBuildFinishedAt, o.getLastBuildFinishedAt());
+        builder.append(o.getLastBuildFinishedAt(), lastBuildFinishedAt);
         builder.append(name, o.getName());
         builder.append(id, o.getId());
         return builder.toComparison();
+    }
+
+    @Override
+    public String toString() {
+        ToStringBuilder builder = new ToStringBuilder(this);
+        builder.append("id", id);
+        builder.append("name", name);
+        builder.append("lastBuildFinishedAt", lastBuildFinishedAt);
+        builder.append("lastBuildStatus", lastBuildStatus);
+        return builder.toString();
     }
 }
